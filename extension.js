@@ -77,6 +77,9 @@ const createRequireString = string => {
         .replace(",", "") ||
       null;
     if (nameSring.includes(",")) {
+      // Quick hack to return a single line:
+      return `const {${nameSring}} = require(${path});`;
+
       const names = nameSring.split(",").map(name => name.trim());
       let returnedString = extraName
         ? `const ${extraName} = require(${path});\n`
@@ -329,5 +332,5 @@ function activate(context) {
 }
 exports.activate = activate;
 
-function deactivate() {}
+function deactivate() { }
 exports.deactivate = deactivate;
