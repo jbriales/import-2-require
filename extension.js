@@ -58,6 +58,7 @@ const createRequireString = string => {
 
   if (!name && path) return `require(${path});`;
 
+  // import {...} from "foo/..."
   if (
     name &&
     name.match(/\{/i) &&
@@ -119,6 +120,7 @@ const createRequireString = string => {
     }
   }
 
+  // import {...} from "./foo/..."
   if (
     name &&
     name.match(/\{/i) &&
@@ -129,6 +131,7 @@ const createRequireString = string => {
     const nameSring = string.match(/{(.+?)}/i)[1].trim();
 
     if (nameSring && nameSring.includes(",")) {
+      // import {bar, quz, ...} from "./foo/..."
       const names = nameSring
         .split(",")
         .map(name => name.trim())
@@ -143,10 +146,12 @@ const createRequireString = string => {
       });
       return returnedString;
     } else {
+      // import {bar} from "./foo/..."
       return `const ${nameSring} = require(${path}).${nameSring};`;
     }
   }
 
+  // import foo from "./foo/..."
   if (
     name &&
     !name.match(/\{/i) &&
@@ -162,6 +167,7 @@ const createRequireString = string => {
     }
   }
 
+  // import foo from "foo/..."
   return `const ${name} = require(${path});`;
 };
 
