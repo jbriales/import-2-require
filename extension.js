@@ -132,6 +132,8 @@ const createRequireString = string => {
 
     if (nameSring && nameSring.includes(",")) {
       // import {bar, quz, ...} from "./foo/..."
+      return `const {${nameSring}} = require(${path});`;
+
       const names = nameSring
         .split(",")
         .map(name => name.trim())
