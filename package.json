@@ -1,5 +1,5 @@
 {
-	"name": "mjs-to-cjs-devel",
+	"name": "import-to-require-devel",
 	"displayName": "Import To Require Syntax (Devel)",
 	"description": "Convert ES6 module import syntax to ES5 require syntax",
 	"version": "0.6.0",
