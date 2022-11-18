@@ -115,7 +115,7 @@ const createRequireString = string => {
       } else {
         return extraName
           ? `const ${extraName} = require(${path});\nconst ${nameSring} = require(${path}).${nameSring};`
-          : `const ${nameSring} = require(${path}).${nameSring};`;
+          : `const {${nameSring}} = require(${path});`;
       }
     }
   }
@@ -149,7 +149,7 @@ const createRequireString = string => {
       return returnedString;
     } else {
       // import {bar} from "./foo/..."
-      return `const ${nameSring} = require(${path}).${nameSring};`;
+      return `const {${nameSring}} = require(${path});`;
     }
   }
 
